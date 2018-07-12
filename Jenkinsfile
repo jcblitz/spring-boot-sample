@@ -1,6 +1,6 @@
 node {
     stage('Configure') {
-        env.PATH = "${tool 'maven-3.3.9'}/bin:${env.PATH}"
+        env.PATH = "${tool 'maven'}/bin:${env.PATH}"
         version = '1.0.' + env.BUILD_NUMBER
         currentBuild.displayName = version
 
@@ -12,7 +12,7 @@ node {
     }
 
     stage('Checkout') {
-        git 'https://github.com/bertjan/spring-boot-sample'
+        git 'https://github.com/jcblitz/spring-boot-sample.git'
     }
 
     stage('Version') {
