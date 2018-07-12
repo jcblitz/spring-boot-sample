@@ -30,6 +30,5 @@ node {
 
     stage('Deploy') {
         sh "curl -s --upload-file ${WORKSPACE}/target/spring-boot-sample.war --user tomcat:password \"http://localhost:9080/manager/text/deploy?path=/spring-boot-sample&update=true&tag=$version\""
-        }
     }
 }
