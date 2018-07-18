@@ -2,15 +2,17 @@ pipeline {
     agent any
     stages {
         stage('Configure') {
-            env.PATH = "${tool 'maven'}/bin:${env.PATH}"
-            version = '1.0.' + env.BUILD_NUMBER
-            currentBuild.displayName = version
+            steps {
+                env.PATH = "${tool 'maven'}/bin:${env.PATH}"
+                version = '1.0.' + env.BUILD_NUMBER
+                currentBuild.displayName = version
 
-            properties([
-                    buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '10')),
-                    [$class: 'GithubProjectProperty', displayName: '', projectUrlStr: 'https://github.com/jcblitz/spring-boot-sample/'],
-                    pipelineTriggers([[$class: 'GitHubPushTrigger']])
-                ])
+                properties([
+                        buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '10')),
+                        [$class: 'GithubProjectProperty', displayName: '', projectUrlStr: 'https://github.com/jcblitz/spring-boot-sample/'],
+                        pipelineTriggers([[$class: 'GitHubPushTrigger']])
+                    ])
+            }
         }
 
         stage('Checkout') {
