@@ -11,6 +11,12 @@
 	<name>spring-boot-sample</name>
 	<description>Demo project for Spring Boot</description>
 
+	<scm>
+		<url>https://github.com/jcblitz/spring-boot-sample</url>
+		<connection>scm:git:https://github.com/jcblitz/spring-boot-sample.git</connection>
+		<developerConnection>scm:git:https://github.com/jcblitz/spring-boot-sample.git</developerConnection>
+	</scm>
+
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -65,6 +71,11 @@
                 <groupId>pl.project13.maven</groupId>
                 <artifactId>git-commit-id-plugin</artifactId>
             </plugin>
+			<plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-release-plugin</artifactId>
+        <version>2.5.3</version>
+      </plugin>
         </plugins>
 	</build>
 
