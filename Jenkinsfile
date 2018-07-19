@@ -1,8 +1,12 @@
 pipeline {
     environment {
-    
         PATH = "${tool 'maven'}/bin:${env.PATH}"
         version = "1.0.${env.BUILD_NUMBER}"
+    }
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '10'))
+        timeout(time: 10, unit: 'MINUTES')
+        timestamps()
     }
         
     agent any
