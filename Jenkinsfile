@@ -30,7 +30,18 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'mvn -B -V -U -e clean package'
+                sh 'mvn -B -V -U -e -DskipTests clean package'
+            }
+        }
+
+        stage('Unit Test') {
+            steps {
+                sh 'mvn test' 
+            }
+            post {
+                always {
+                    junit 'target/surefire-reports/*.xml' 
+                }
             }
         }
 
@@ -39,12 +50,15 @@ pipeline {
                 sh "curl -s --upload-file ${WORKSPACE}/target/spring-boot-sample.war --user tomcat:password \"http://localhost:9080/manager/text/deploy?path=/spring-boot-sample&update=true&tag=$version\""
             }
         }
+
+        stage('Smoke Test') {
+            
+        }
     }
 
      post {
         always {
             archiveArtifacts artifacts: '**/target/*.war', fingerprint: true
-            junit allowEmptyResults: true, testResults: '**/target/**/TEST*.xml'
         }
     }
 }
