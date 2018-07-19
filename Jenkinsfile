@@ -52,6 +52,9 @@ pipeline {
         }
 
         stage('Smoke Test') {
+            steps {
+                sh 'echo Running smoke tests...'
+            }
             
         }
     }
