@@ -17,6 +17,6 @@ public class Person {
     }
 
     public String getFullName() {
-        return String.format("%s %s", this.getFirstName(), this.getLastName());
+        return new StringBuilder(getFirstName()).append(" ").append(getLastName()).toString();
     }
 }
